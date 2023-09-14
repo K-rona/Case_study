@@ -1,0 +1,28 @@
+from textblob import TextBlob
+ptr = input()
+text = TextBlob(ptr).correct()
+tw = 1
+tse = 0
+tsy = 0
+index = 0
+ltrs = "aeiouy"
+for i in range(len(ptr)):
+    if ptr[i] == " ":
+        tw += 1
+    if ptr[i] == ".":
+        tse += 1
+    if ptr[i].lower() in ltrs:
+        tsy += 1
+index_eng = 206.835 - 1.015*(tw/tse) - 84.6*(tsy/tw)
+
+
+def text(x):
+    if x > 80:
+        return "Текст очень легко читается(для младших школьников)"
+    if 50 < x <= 80:
+        return "Простой текст(для школьников)"
+    if 25 < x <= 50:
+        return "Текст немного трудно читать(для студентов)"
+    if x <= 25:
+        return "Текст трудно читается(для выпускников ВУЗов)"
+
