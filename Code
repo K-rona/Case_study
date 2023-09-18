@@ -3,7 +3,7 @@ from googletrans import Translator
 
 ptr = TextBlob(input()).correct()
 translator = Translator()
-text = translator.translate(ptr, dest="en")
+text = translator.translate(ptr, dest = "en")
 result = text.text
 
 tw = 1
@@ -33,25 +33,25 @@ for i in result:
 if last == 1:
     tse += 1
 
-index = 206.835 - 1.015*(tw/tse) - 84.6*(tsy/tw)
+index = 206.835 - 1.015 * (tw / tse) - 84.6 * (tsy / tw)
 
 
 def difficulty(x):
     if x > 80:
-        return "Текст очень легко читается(для младших школьников)"
+        return "Текст очень легко читается (для младших школьников)"
     if 50 < x <= 80:
-        return "Простой текст(для школьников)"
+        return "Простой текст (для школьников)"
     if 25 < x <= 50:
-        return "Текст немного трудно читать(для студентов)"
+        return "Текст немного трудно читать (для студентов)"
     if x <= 25:
-        return "Текст трудно читается(для выпускников ВУЗов)"
+        return "Текст трудно читается (для выпускников ВУЗов)"
 
 
-print("Предложений:", tse)
-print("Слов:", tw)
-print("Слогов:", tsy)
-print("Средняя длина предложения в словах: ", tw/tse)
-print("Средняя длина слова в слогах: ", tsy/tw)
-print("Индекс удобочитаемости Флеша:", index)
+print("Предложений: ", tse)
+print("Слов: ", tw)
+print("Слогов: ", tsy)
+print("Средняя длина предложения в словах: ", tw / tse)
+print("Средняя длина слова в слогах: ", tsy / tw)
+print("Индекс удобочитаемости Флеша: ", index)
 print(difficulty(index))
-print("Субъективность:", str(sub) + "%")
+print("Субъективность: ", str(sub) + "%")
