@@ -1,4 +1,5 @@
 from textblob import TextBlob
+from langdetect import detect
 
 ptr = input()
 text = TextBlob(ptr).correct()
@@ -6,18 +7,51 @@ tw = 1
 tse = 0
 tsy = 0
 index = 0
-ltrs = "aeiouy"
+ltrs_eng = "aeiouy"
+ltrs_rus = "аоуыэёюяие"
+now = 0
+last = 0
 
-sub = text.sentiment[1]*100
+sub = text.sentiment[1] * 100
 
-for i in range(len(text)):
-    if text[i] == " ":
-        tw += 1
-    if text[i] == "." or text[i] == "?" or text[i] == "!":
+if detect(ptr) == "en":
+    for i in range(len(text)):
+        if text[i] == " ":
+            tw += 1
+        if text[i].lower() in ltrs_eng:
+            tsy += 1
+    for i in text:
+        if (ord(i) > 64) and (ord(i) < 91):
+            now = 1
+        if now == 1 and last == 1:
+            now = 0
+            last = 0
+            tse += 1
+        if i in '.?!':
+            last = 1
+    if last == 1:
         tse += 1
-    if text[i].lower() in ltrs:
-        tsy += 1
-index_eng = 206.835 - 1.015*(tw/tse) - 84.6*(tsy/tw)
+    index = 206.835 - 1.015*(tw/tse) - 84.6*(tsy/tw)
+
+
+if detect(ptr) == "mk":
+    for i in range(len(text)):
+        if text[i] == " ":
+            tw += 1
+        if text[i].lower() in ltrs_rus:
+            tsy += 1
+    for i in text:
+        if (ord(i) > 1039) and (ord(i) < 1072):
+            now = 1
+        if now == 1 and last == 1:
+            now = 0
+            last = 0
+            tse += 1
+        if i in '.?!':
+            last = 1
+    if last == 1:
+        tse += 1
+    index = 206.835 - 1.3 * (tw/tse) - 60.1 * (tsy/tw)
 
 
 def difficulty(x):
@@ -36,6 +70,6 @@ print("Слов:", tw)
 print("Слогов:", tsy)
 print("Средняя длина предложения в словах: ", tw/tse)
 print("Средняя длина слова в слогах: ", tsy/tw)
-print("Индекс удобочитаемости Флеша:", index_eng)
-print(difficulty(index_eng))
+print("Индекс удобочитаемости Флеша:", index)
+print(difficulty(index))
 print("Субъективность:", str(sub) + "%")
