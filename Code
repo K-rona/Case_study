@@ -31,7 +31,7 @@ if detect(ptr) == "en":
             last = 1
     if last == 1:
         tse += 1
-    index = 206.835 - 1.015*(tw/tse) - 84.6*(tsy/tw)
+    index = 206.835 - 1.015 * (tw / tse) - 84.6 * (tsy / tw)
 
 
 if detect(ptr) == "mk":
@@ -51,7 +51,7 @@ if detect(ptr) == "mk":
             last = 1
     if last == 1:
         tse += 1
-    index = 206.835 - 1.3 * (tw/tse) - 60.1 * (tsy/tw)
+    index = 206.835 - 1.3 * (tw / tse) - 60.1 * (tsy / tw)
 
 
 def difficulty(x):
@@ -68,8 +68,8 @@ def difficulty(x):
 print("Предложений:", tse)
 print("Слов:", tw)
 print("Слогов:", tsy)
-print("Средняя длина предложения в словах: ", tw/tse)
-print("Средняя длина слова в слогах: ", tsy/tw)
+print("Средняя длина предложения в словах: ", tw / tse)
+print("Средняя длина слова в слогах: ", tsy / tw)
 print("Индекс удобочитаемости Флеша:", index)
 print(difficulty(index))
 print("Субъективность:", str(sub) + "%")
