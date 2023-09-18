@@ -8,7 +8,7 @@ tsy = 0
 index = 0
 ltrs = "aeiouy"
 
-ton = text.sentiment[1]*100
+sub = text.sentiment[1]*100
 
 for i in range(len(text)):
     if text[i] == " ":
@@ -38,4 +38,4 @@ print("Средняя длина предложения в словах: ", tw/t
 print("Средняя длина слова в слогах: ", tsy/tw)
 print("Индекс удобочитаемости Флеша:", index_eng)
 print(difficulty(index_eng))
-print("Субъективность:", str(ton) + "%")
+print("Субъективность:", str(sub) + "%")
