@@ -8,6 +8,7 @@ tsy = 0
 index = 0
 ltrs = "aeiouy"
 
+ton = text.sentiment[1]*100
 
 for i in range(len(text)):
     if text[i] == " ":
@@ -16,11 +17,10 @@ for i in range(len(text)):
         tse += 1
     if text[i].lower() in ltrs:
         tsy += 1
-
 index_eng = 206.835 - 1.015*(tw/tse) - 84.6*(tsy/tw)
 
 
-def result(x):
+def difficulty(x):
     if x > 80:
         return "Текст очень легко читается(для младших школьников)"
     if 50 < x <= 80:
@@ -37,4 +37,6 @@ print("Слогов:", tsy)
 print("Средняя длина предложения в словах: ", tw/tse)
 print("Средняя длина слова в слогах: ", tsy/tw)
 print("Индекс удобочитаемости Флеша:", index_eng)
-print(result(index_eng))
+print(difficulty(index_eng))
+print(tonality(ton))
+print("Субъективность:", str(ton) + "%")
