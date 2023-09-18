@@ -13,7 +13,7 @@ sub = text.sentiment[1]*100
 for i in range(len(text)):
     if text[i] == " ":
         tw += 1
-    if text[i] == ".":
+    if text[i] == "." or text[i] == "?" or text[i] == "!":
         tse += 1
     if text[i].lower() in ltrs:
         tsy += 1
