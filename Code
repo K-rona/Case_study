@@ -1,3 +1,8 @@
+'''
+Аронова Александра - 50
+Мария Ядреева - 50
+Кузнецов Игорь - 
+'''
 from textblob import TextBlob
 from googletrans import Translator
 
